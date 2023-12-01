@@ -51,7 +51,7 @@ module Libreconv
         command = build_command(tmp_pipe_path, target_path)
         target_tmp_file = execute_command(command, target_path)
 
-        FileUtils.cp target_tmp_file, @target
+        FileUtils.cp_r(Dir.glob(File.join(target_path, '*')), @target)
       end
     ensure
       FileUtils.rm_rf tmp_pipe_path if File.exist?(tmp_pipe_path)
